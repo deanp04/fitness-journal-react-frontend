@@ -27,13 +27,13 @@ const NewPostPage = () => {
     <Container className="mt-4"> 
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control type="text" name="title" placeholder="Title" onChange={handleChange} />
+        <Form.Label>Exercise</Form.Label>
+        <Form.Control type="text" name="title" placeholder="Exercise" onChange={handleChange} />
       </Form.Group>
 
       <Form.Group>
-        <Form.Label>Author</Form.Label>
-        <Form.Control type="text" name="author" placeholder="Author" onChange={handleChange} />
+        <Form.Label>Add Set</Form.Label>
+        <Form.Control type="text" name="author" placeholder="Add Set" onChange={handleChange} />
       </Form.Group>
 
       <Form.Group>
