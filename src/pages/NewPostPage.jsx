@@ -26,14 +26,19 @@ const NewPostPage = () => {
   return (
     <Container className="mt-4"> 
     <Form onSubmit={handleSubmit}>
+    <Form.Group>
+        <Form.Label>Date</Form.Label>
+        <Form.Control type="date" name="date" placeholder="Date" onChange={handleChange} />
+      </Form.Group>
+      
       <Form.Group>
         <Form.Label>Exercise</Form.Label>
-        <Form.Control type="text" name="title" placeholder="Exercise" onChange={handleChange} />
+        <Form.Control type="text" name="exercise" placeholder="Exercise" onChange={handleChange} />
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Add Set</Form.Label>
-        <Form.Control type="text" name="author" placeholder="Add Set" onChange={handleChange} />
+        <Form.Control type="text" name="add set" placeholder="Add Set" onChange={handleChange} />
       </Form.Group>
 
       <Form.Group>
