@@ -5,40 +5,43 @@ import { Card, Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const HomePage = () => {
-  const [posts, setPosts] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:5000/posts');
-      setPosts(res.data);
+    const fetchWorkouts = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/workouts');
+        setWorkouts(res.data);
+      } catch (error) {
+        console.error("Error fetching workouts", error);
+      }
     };
-    
-    fetchPosts();
+
+    fetchWorkouts();
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/posts/${id}`);
-      setPosts(posts.filter((post) => post._id !== id));
+      await axios.delete(`http://localhost:5000/workouts/${id}`);
+      setWorkouts(workouts.filter((workout) => workout._id !== id));
     } catch (error) {
-      console.error("Error deleting post", error);
+      console.error("Error deleting workout", error);
     }
   };
 
   return (
     <Container>
       <Row>
-        {posts.map((post) => (
-          <Col md={4} className="mb-4" key={post._id}>
+        {workouts.map((workout) => (
+          <Col md={4} className="mb-4" key={workout._id}>
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={post.image} alt={post.title} />
               <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Card.Text>By: {post.author}</Card.Text>
-                <Link to={`/posts/${post._id}`}>
-                  <Button variant="primary" className="mr-2">Read More</Button>
+                <Card.Title>{workout.date}</Card.Title>
+                <Card.Text>Feelings: {workout.feelings}</Card.Text>
+                <Link to={`/workouts/${workout._id}`}>
+                  <Button variant="primary" className="mr-2">View Details</Button>
                 </Link>
-                <Button variant="danger" onClick={() => handleDelete(post._id)}>Delete</Button>
+                <Button variant="danger" onClick={() => handleDelete(workout._id)}>Delete</Button>
               </Card.Body>
             </Card>
           </Col>
